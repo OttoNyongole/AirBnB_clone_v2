@@ -17,7 +17,6 @@ class FileStorage:
                     n_Dic[key] = value
             return n_Dic
         return self.__objects
-
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
@@ -54,8 +53,8 @@ class FileStorage:
                         self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
-	
-	def delete(self, obj=None):
+
+    def delete(self, obj=None):
         """To delete obj from __objects if it’s inside"""
         if not obj:
             return
@@ -63,3 +62,7 @@ class FileStorage:
         if key in self.__objects:
             del self.__objects[key]
             self.save()
+
+    def close(self):
+        """Call reload() method for deserializing the JSON file to objects"""
+        self.reload()
