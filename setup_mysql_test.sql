@@ -1,11 +1,6 @@
--- A script that prepares a MySQL server for the project
+-- Prepare mysql server for project
+-- Create Database
 CREATE DATABASE IF NOT EXISTS hbnb_test_db;
-
--- Adding new user 'hbnb_dev' in localhost
--- password for the new user should be 'hbnb_test_pwd'
-
-CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTOFIED BY 'hbnb_dev_pwd';
-GRANT ALL PRIVILEGES ON *.* TO 'hbnb_dev'@'localhost';
-GRANT SELECT ON performance_schem.table TO 'hbnb_dev'@'localhost';
-
-FLUSH PRIVILEGES;
+CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost' IDENTIFIED BY 'hbnb_test_pwd';
+GRANT ALL PRIVILEGES ON hbnb_test_db.* TO 'hbnb_test'@'localhost';
+GRANT SELECT ON performance_schema.* TO 'hbnb_test'@'localhost';
